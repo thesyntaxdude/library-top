@@ -58,7 +58,7 @@ form>input {
   border: 1px solid;
 }
 
-form>input:last-of-type {
+#status-on, #status-off {
   display: initial;
 }
 
@@ -70,7 +70,7 @@ form>input::placeholder {
 label {
   font-weight: 400;
   font-size: 12px;
-  color: rgba(0, 0, 0, 0.7)
+  color: rgba(0, 0, 0, 0.7);
 }
 
 form>button {

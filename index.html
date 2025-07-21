@@ -11,17 +11,22 @@
 
 <body>
   <main>
-    <button id="new-book-btn" >Add New Book</button>
+    <button id="new-book-btn">Add New Book</button>
     <dialog closedby="any">
       <form action="#" id="add-new-book">
         <button id="close-btn">X</button>
         <input type="text" name="title" id="title" placeholder="what's the title of this book?" required>
         <input type="text" name="author" id="author" placeholder="who wrote this book?" required>
         <input type="number" name="pages" id="pages" min="10" placeholder="number of pages" required>
-        <input type="checkbox" name="status" id="status" required>
-        <label for="status">Read? Check box</label>
+        <label for="status-on">Read</label>
+        <input type="radio" name="status" id="status-on" value="read">
 
-        <button id="submit">Save Book</button>
+
+        <label for="status-off">Not read</label>
+        <input type="radio" name="status" id="status-off"  value="not-read">
+
+
+        <button id="submit" type="submit">Save Book</button>
       </form>
     </dialog>
     <section id="library-showcase">
