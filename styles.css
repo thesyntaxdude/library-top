@@ -1,0 +1,95 @@
+*,
+::before,
+::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* min-height: 100vh; */
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+
+button {
+  display: block;
+  border: none;
+  height: 3em;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+  padding: 0.5em 1em;
+  background-color: #1E90FF;
+  color: white;
+  font-weight: bold;
+  border-radius: 0.7rem;
+  margin-inline: auto;
+  cursor: pointer;
+  transition: 0.3s ease-in;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+dialog {
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+  margin: 4em auto;
+  padding: 2em 1em;
+  border: 2px solid #1E90FF;
+  border-radius: 1em;
+
+  &::backdrop {
+    background-color: lightgrey;
+    opacity: 0.6;
+  }
+}
+
+
+form>input {
+  display: block;
+  margin-bottom: 1em;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  border: 1px solid;
+}
+
+form>input:last-of-type {
+  display: initial;
+}
+
+form>input::placeholder {
+  text-transform: capitalize;
+  font-size: 0.7rem;
+}
+
+label {
+  font-weight: 400;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.7)
+}
+
+form>button {
+  font-size: 0.6rem;
+
+}
+
+#close-btn {
+  position: absolute;
+  top: 1em;
+  right: 1.5em;
+  background-color: transparent;
+  color: #1E90FF;
+  border: 1px solid;
+  font-size: 0.4rem;
+
+  &:hover {
+    background-color: #1E90FF;
+    color: white;
+    opacity: 0.5;
+  }
+}
