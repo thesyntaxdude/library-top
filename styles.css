@@ -7,11 +7,9 @@
 }
 
 body {
-  /* min-height: 100vh; */
   padding: 1em;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
 }
 
 
@@ -58,7 +56,8 @@ form>input {
   border: 1px solid;
 }
 
-#status-on, #status-off {
+#status-on,
+#status-off {
   display: initial;
 }
 
@@ -78,7 +77,7 @@ form>button {
 
 }
 
-#close-btn {
+#close-btn, .delete-btn{
   position: absolute;
   top: 1em;
   right: 1.5em;
@@ -92,4 +91,46 @@ form>button {
     color: white;
     opacity: 0.5;
   }
+}
+#library-showcase{
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+.showcase-container {
+  margin-top: 5em;
+  padding: 2em;
+  min-width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
+}
+
+.book {
+  width: 18rem;
+  height: 10rem;
+  border-radius: 1em;
+  padding: 1em 1.2em;
+  background-color: rgba(200, 200, 200, 0.5);
+  box-shadow: 2px 2px 5px rgba(56, 55, 55, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.book-title {
+  font-size: 1.2rem;
+  text-transform: capitalize;
+}
+
+.book-author {
+  font-size: 0.8rem;
+  text-transform: capitalize;
+}
+
+.book-pages,
+.book-status {
+  font-size: 0.8rem;
+  text-transform: capitalize;
 }

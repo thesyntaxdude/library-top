@@ -4,7 +4,26 @@ const closeBtn = document.querySelector("#close-btn");
 addBookBtn.addEventListener("click", (e) => dialogBox.showModal());
 closeBtn.addEventListener("click", (e) => dialogBox.close());
 
-const myLibrary = [];
+const myLibrary = JSON.parse(localStorage.getItem("libraryBooks")) || [];
+
+renderBooks();
+
+const deleteBtn = document.querySelectorAll(".delete-btn");
+deleteBtn.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    const showcaseContainer = document.querySelector(".showcase-container");
+    const removeBook = e.target.parentElement;
+    showcaseContainer.removeChild(removeBook);
+    myLibrary.forEach((book) => {
+      if (book.uId === removeBook.getAttribute("data-Id")) {
+        const bookIndex = myLibrary.indexOf(book);
+        myLibrary.splice(bookIndex, 1);
+        localStorage.setItem("libraryBooks", JSON.stringify(myLibrary));
+      }
+    });
+    renderBooks();
+  });
+});
 
 function Book(title, author, pages, status, uId) {
   if (!new.target) {
@@ -32,6 +51,8 @@ function addBookToLibrary() {
   const bookItem = new Book(title, author, pages, status, uId);
 
   myLibrary.push(bookItem);
+  localStorage.setItem("libraryBooks", JSON.stringify(myLibrary));
+  renderBooks();
 
   document.querySelector("#title").value = "";
   document.querySelector("#author").value = "";
@@ -49,9 +70,40 @@ function checkStatus() {
   // const statusOn = document.querySelector("#status-on").value;
   const statusOff = document.querySelector("#status-off").value;
   if (!statusOff) {
+    document.querySelector("#status-on").value= "";
     return "read";
   }
+  document.querySelector("#status-off").value = "";
   return "not read";
 }
 
-console.log(myLibrary);
+function renderBooks() {
+  const showcaseContainer = document.querySelector(".showcase-container");
+  showcaseContainer.textContent = "";
+  myLibrary.forEach((book) => {
+    const bookField = document.createElement("div");
+    bookField.classList.add("book");
+    bookField.setAttribute("data-id", book.uId);
+    const titleField = document.createElement("h2");
+    titleField.textContent = book.title;
+    titleField.classList.add("book-title");
+    const authorField = document.createElement("h3");
+    authorField.textContent = `Author: ${book.author}`;
+    authorField.classList.add("book-author");
+    const pagesField = document.createElement("p");
+    pagesField.textContent = `Number Of Pages: ${book.pages}`;
+    pagesField.classList.add("book-pages");
+    const statusField = document.createElement("p");
+    statusField.textContent = `Status: ${book.status}`;
+    statusField.classList.add("book-status");
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = `X`;
+    deleteBtn.classList.add("delete-btn");
+    showcaseContainer.appendChild(bookField);
+    bookField.appendChild(titleField);
+    bookField.appendChild(authorField);
+    bookField.appendChild(pagesField);
+    bookField.appendChild(statusField);
+    bookField.appendChild(deleteBtn);
+  });
+}
