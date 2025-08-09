@@ -99,10 +99,10 @@ function checkStatus() {
   const statusOff = document.querySelector("#status-off").value;
   if (!statusOff) {
     document.querySelector("#status-on").value = "";
-    return "read";
+    return "not read";
   }
   document.querySelector("#status-off").value = "";
-  return "not read";
+  return "read";
 }
 
 function renderBooks() {
