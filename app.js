@@ -8,12 +8,27 @@ const myLibrary = JSON.parse(localStorage.getItem("libraryBooks")) || [];
 
 renderBooks();
 
-const deleteBtn = document.querySelectorAll(".delete-btn");
-deleteBtn.forEach((button) => {
-  button.addEventListener("click", (e) => {
-    const showcaseContainer = document.querySelector(".showcase-container");
+// const deleteBtn = document.querySelectorAll(".delete-btn");
+// deleteBtn.forEach((button) => {
+//   button.addEventListener("click", (e) => {
+//     const showcaseContainer = document.querySelector(".showcase-container");
+//     const removeBook = e.target.parentElement;
+//     showcaseContainer.removeChild(removeBook);
+//     myLibrary.forEach((book) => {
+//       if (book.uId === removeBook.getAttribute("data-Id")) {
+//         const bookIndex = myLibrary.indexOf(book);
+//         myLibrary.splice(bookIndex, 1);
+//         localStorage.setItem("libraryBooks", JSON.stringify(myLibrary));
+//       }
+//     });
+//     renderBooks();
+//   });
+// });
+
+const showcaseContainer = document.querySelector(".showcase-container");
+showcaseContainer.addEventListener("click", (e) => {
+  if (e.target.classList.contains("delete-btn")) {
     const removeBook = e.target.parentElement;
-    showcaseContainer.removeChild(removeBook);
     myLibrary.forEach((book) => {
       if (book.uId === removeBook.getAttribute("data-Id")) {
         const bookIndex = myLibrary.indexOf(book);
@@ -22,7 +37,7 @@ deleteBtn.forEach((button) => {
       }
     });
     renderBooks();
-  });
+  }
 });
 
 // function Book(title, author, pages, status, uId) {
@@ -83,7 +98,7 @@ function checkStatus() {
   // const statusOn = document.querySelector("#status-on").value;
   const statusOff = document.querySelector("#status-off").value;
   if (!statusOff) {
-    document.querySelector("#status-on").value= "";
+    document.querySelector("#status-on").value = "";
     return "read";
   }
   document.querySelector("#status-off").value = "";
