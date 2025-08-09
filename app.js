@@ -25,15 +25,28 @@ deleteBtn.forEach((button) => {
   });
 });
 
-function Book(title, author, pages, status, uId) {
-  if (!new.target) {
-    throw Error(`You should use the "NEW" operator!`);
+// function Book(title, author, pages, status, uId) {
+//   if (!new.target) {
+//     throw Error(`You should use the "NEW" operator!`);
+//   }
+//   this.title = title;
+//   this.author = author;
+//   this.pages = pages;
+//   this.status = status;
+//   this.uId = uId;
+// }
+
+class Book {
+  constructor(title, author, pages, status, uId) {
+    if (!new.target) {
+      throw Error(`You should use the "NEW" operator!`); // a neat trick I learnt to help reduce bugs
+    }
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.status = status;
+    this.uId = uId;
   }
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.status = status;
-  this.uId = uId;
 }
 
 function generateBookId() {
