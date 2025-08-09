@@ -8,12 +8,27 @@ const myLibrary = JSON.parse(localStorage.getItem("libraryBooks")) || [];
 
 renderBooks();
 
-const deleteBtn = document.querySelectorAll(".delete-btn");
-deleteBtn.forEach((button) => {
-  button.addEventListener("click", (e) => {
-    const showcaseContainer = document.querySelector(".showcase-container");
+// const deleteBtn = document.querySelectorAll(".delete-btn");
+// deleteBtn.forEach((button) => {
+//   button.addEventListener("click", (e) => {
+//     const showcaseContainer = document.querySelector(".showcase-container");
+//     const removeBook = e.target.parentElement;
+//     showcaseContainer.removeChild(removeBook);
+//     myLibrary.forEach((book) => {
+//       if (book.uId === removeBook.getAttribute("data-Id")) {
+//         const bookIndex = myLibrary.indexOf(book);
+//         myLibrary.splice(bookIndex, 1);
+//         localStorage.setItem("libraryBooks", JSON.stringify(myLibrary));
+//       }
+//     });
+//     renderBooks();
+//   });
+// });
+
+const showcaseContainer = document.querySelector(".showcase-container");
+showcaseContainer.addEventListener("click", (e) => {
+  if (e.target.classList.contains("delete-btn")) {
     const removeBook = e.target.parentElement;
-    showcaseContainer.removeChild(removeBook);
     myLibrary.forEach((book) => {
       if (book.uId === removeBook.getAttribute("data-Id")) {
         const bookIndex = myLibrary.indexOf(book);
@@ -22,18 +37,31 @@ deleteBtn.forEach((button) => {
       }
     });
     renderBooks();
-  });
+  }
 });
 
-function Book(title, author, pages, status, uId) {
-  if (!new.target) {
-    throw Error(`You should use the "NEW" operator!`);
+// function Book(title, author, pages, status, uId) {
+//   if (!new.target) {
+//     throw Error(`You should use the "NEW" operator!`);
+//   }
+//   this.title = title;
+//   this.author = author;
+//   this.pages = pages;
+//   this.status = status;
+//   this.uId = uId;
+// }
+
+class Book {
+  constructor(title, author, pages, status, uId) {
+    if (!new.target) {
+      throw Error(`You should use the "NEW" operator!`); // a neat trick I learnt to help reduce bugs
+    }
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.status = status;
+    this.uId = uId;
   }
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.status = status;
-  this.uId = uId;
 }
 
 function generateBookId() {
@@ -70,11 +98,11 @@ function checkStatus() {
   // const statusOn = document.querySelector("#status-on").value;
   const statusOff = document.querySelector("#status-off").value;
   if (!statusOff) {
-    document.querySelector("#status-on").value= "";
-    return "read";
+    document.querySelector("#status-on").value = "";
+    return "not read";
   }
   document.querySelector("#status-off").value = "";
-  return "not read";
+  return "read";
 }
 
 function renderBooks() {
